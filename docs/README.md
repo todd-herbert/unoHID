@@ -28,7 +28,14 @@ Your Arduino will *not* appear as a USB keyboard or mouse through the built in U
 
 ## Wiring
 
-![vusb-schematic](./schematic.jpg)
+### Schematic
+
+![schematic of V-USB wiring for use with the library](./schematic.jpg)
+
+### Demonstration
+
+![rendered graphic of V-USB wiring, set out on a breadboard](./breadboard.png)
+
 
 Pins 2, 4, and 5 are reserved for the library. You will get away with some variation, but remember that the D+ / D- lines will be **very** unhappy if they start to see much more than 3.3V.
 

@@ -3,6 +3,7 @@
 lib
 include
 test
+excluded
 
 platformio.ini
 src/main.cpp
