@@ -106,7 +106,7 @@ Expect a note in your build output if this option has been successfully modified
 ### USB Device Name
 
 It is possible to change the name reported by the USB device.
-[Obdev](https://www.obdev.at/products/vusb/index.html), the authors of V-USB, have some requests, which you can read in [USB-IDs-for-free.txt](/src/vusb/USB-IDs-for-free.txt).
+[Obdev](https://www.obdev.at/products/vusb/index.html), the authors of V-USB, have some requests, which you can read in [USB-IDs-for-free.txt](/docs/vusb/USB-IDs-for-free.txt).
 
 To change the device name, edit the file [./src/vusb/usb_descriptor.h](/src/vusb/usb_descriptor.h), in your [Arduino IDE libraries folder](https://docs.arduino.cc/hacking/software/Libraries).
 
