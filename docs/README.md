@@ -17,9 +17,9 @@ A user-friendly implementation of [Obdev's V-USB driver](https://www.obdev.at/vu
 
 ## What is V-USB?
 
-```
-V-USB is a software-only implementation of a low-speed USB device for Atmel’s AVR® microcontrollers, making it possible to build USB hardware with almost any AVR® microcontroller, not requiring any additional chip.
-```
+>V-USB is a software-only implementation of a low-speed USB device for Atmel’s AVR® microcontrollers,
+>making it possible to build USB hardware with almost any AVR® microcontroller,
+>not requiring any additional chip.
 
 Some Arduino boards have native USB support; not the Uno. This library adds USB support, using the V-USB driver.
 
