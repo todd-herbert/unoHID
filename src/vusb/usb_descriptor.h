@@ -5,7 +5,7 @@
 // ------------------
 
 // Max length: 18
-// Please read https://github.com/todd-herbert/unoHID/blob/main/doc/vusb/USB-IDs-for-free.txt
+// Please read https://github.com/todd-herbert/unoHID/blob/main/docs/vusb/USB-IDs-for-free.txt
 
 #define USB_CFG_VENDOR_NAME_LEN     18
 #define USB_CFG_VENDOR_NAME         't','i','n','y','u','r','l','.','c','o','m','/','u','n','o','H','I','D'
