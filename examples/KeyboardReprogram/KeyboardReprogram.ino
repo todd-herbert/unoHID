@@ -4,7 +4,7 @@
 
     For the Arduino UNO R3, and other ATmega328 based boards.
 
-    When you connect pin 2 to ground, it creates a new window with a key
+    When you connect pin 8 to ground, it creates a new window with a key
     combination (CTRL-N), then types in the Blink sketch, then auto-formats the
     text using another key combination (CTRL-T), then uploads the sketch to the
     currently selected Arduino using a final key combination (CTRL-U).
@@ -16,7 +16,7 @@
         - VUSB circuit, connected to D2, D4 and D5
             TODO: link to vusb wiring
 
-        - wire to connect D2 to ground
+        - wire to connect D8 to ground
 
     created 5 Mar 2012
     modified 29 Mar 2012
