@@ -6,13 +6,17 @@
     - Functions for printing tidy serial output
     - Function to list all commands
     - Function to list all constants
-    - Functions to provide information on specific constants
+    - Functions to provide information on specific commands
 */
 
 #ifndef __DEVKIT_HELP__
 #define __DEVKIT_HELP__
 
 #include <Arduino.h>
+#include "unoHID.h"
+
+#include "command_lookup.h"
+#include "macro_lookup.h"
 
 // Print an indented line of text
 #define indent_4(text) Serial.println(F("    " text))

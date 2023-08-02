@@ -25,8 +25,7 @@ struct ParsedCommand {
 
     // Destructor - Free up dynamic memory
     ~ParsedCommand() {
-        // delete[] command;
-        
+               
         // Look for old string args
         for(uint8_t i = 0; i < arg_count; i++) {
             if (arg_type[i] == StringArg && string_args[i] != nullptr)
