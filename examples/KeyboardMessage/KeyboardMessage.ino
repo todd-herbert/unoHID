@@ -9,17 +9,17 @@
         - VUSB circuit, connected to D2, D4 and D5
                 TODO: link to vusb wiring
 
-        - Pushbutton attached from pin 8 to +5V
+        - Push-button attached from pin 8 to +5V
 
-        - 10 kilohm resistor attached from pin 8 to ground
+        - 10 kilo-ohm resistor attached from pin 8 to ground
 
-    created 24 Oct 2011
-    modified 27 Mar 2012
+    Created 24 Oct 2011
+    Modified 27 Mar 2012
     by Tom Igoe
-    modified 11 Nov 2013
+    Modified 11 Nov 2013
     by Scott Fitzgerald
 
-    modified 20 Jul 2023
+    Modified 20 Jul 2023
     for unoHID library
 
     This example code is in the public domain.
@@ -29,31 +29,33 @@
 
 #include "unoHID.h"
 
-const int buttonPin = 8;         // input pin for pushbutton
-int previousButtonState = HIGH;  // for checking the state of a pushButton
-int counter = 0;                 // button push counter
+const int buttonPin = 8;            // Input pin for push-button
+int previousButtonState = HIGH;     // For checking the state of a push-button
+int counter = 0;                    // Button push counter
+
 
 void setup() {
-    // make the pushButton pin an input:
-    pinMode(buttonPin, INPUT);
-    // initialize control over the keyboard:
-    Keyboard.begin();
+    pinMode(buttonPin, INPUT);      // Make the push-button pin an input
+    
+    Keyboard.begin();               // Initialize control over the keyboard
 }
 
+
 void loop() {
-    // read the pushbutton:
-    int buttonState = digitalRead(buttonPin);
-    // if the button state has changed,
-    if ((buttonState != previousButtonState)
-        // and it's currently pressed:
-        && (buttonState == HIGH)) {
-        // increment the button counter
+    // Read the push-button:
+    int buttonState = digitalRead(buttonPin);   
+
+    // If the button state has changed, and it is currently pressed
+    if ((buttonState != previousButtonState) && (buttonState == HIGH)) {
+        // Increment the button counter
         counter++;
-        // type out a message
+
+        // Type out a message
         Keyboard.print("You pressed the button ");
         Keyboard.print(counter);
         Keyboard.println(" times.");
     }
-    // save the current button state for comparison next time:
+
+    // Save the current button state for comparison next time:
     previousButtonState = buttonState;
 }

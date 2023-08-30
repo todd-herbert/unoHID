@@ -1,5 +1,4 @@
 /*
-
     Arduino Programs Blink
 
     For the Arduino UNO R3, and other ATmega328 based boards.
@@ -16,15 +15,15 @@
         - VUSB circuit, connected to D2, D4 and D5
             TODO: link to vusb wiring
 
-        - wire to connect D8 to ground
+        - Wire to connect D8 to ground
 
-    created 5 Mar 2012
-    modified 29 Mar 2012
+    Created 5 Mar 2012
+    Modified 29 Mar 2012
     by Tom Igoe
-    modified 3 May 2014
+    Modified 3 May 2014
     by Scott Fitzgerald
 
-    modified 20 Jul 2023
+    Modified 20 Jul 2023
     for unoHID library
 
     This example is in the public domain.
@@ -35,22 +34,24 @@
 
 #include "unoHID.h"
 
-// use this option for Windows and Linux.
-// leave commented out if using OSX:
- char ctrlKey = KEY_LEFT_CTRL;
+// Use this option for Windows and Linux.
+// Comment out if using OSX:
 
-// use this option for OSX.
+char ctrlKey = KEY_LEFT_CTRL;
+
+// Use this option for OSX.
 // Comment it out if using Windows or Linux:
+
 // char ctrlKey = KEY_LEFT_GUI;
 
 void setup() {
 
-    // make pin 8 an input and turn on the pull-up resistor 
-    // so it goes high unless connected to ground:
+    // Make pin 8 an input and turn on the pull-up resistor 
+    // So it goes high unless connected to ground:
 
     pinMode(8, INPUT_PULLUP);
 
-    // initialize control over the keyboard:
+    // Initialize control over the keyboard:
 
     Keyboard.begin();
 }
@@ -58,13 +59,13 @@ void setup() {
 void loop() {
 
     while (digitalRead(8) == HIGH) {
-        // do nothing until pin 8 goes low
-        delay(500);
+        // Do nothing until pin 8 goes low
+        delay(100);
     }
 
     delay(1000);
 
-    // new document:
+    // New document:
 
     Keyboard.press(ctrlKey);
     Keyboard.press('n');
@@ -72,15 +73,15 @@ void loop() {
     delay(100);
     Keyboard.releaseAll();
 
-    // wait for new window to open:
+    // Wait for new window to open:
     // (slow..)
 
     delay(10000);
 
-    // versions of the Arduino IDE after 1.5 pre-populate new sketches with
+    // Versions of the Arduino IDE after 1.5 pre-populate new sketches with
     // setup() and loop() functions let's clear the window before typing anything new
 
-    // select all
+    // Select all
 
     Keyboard.press(ctrlKey);
     Keyboard.press('a');
@@ -88,7 +89,7 @@ void loop() {
     delay(500);
     Keyboard.releaseAll();
 
-    // delete the selected text
+    // Delete the selected text
 
     Keyboard.write(KEY_BACKSPACE);
     delay(500);
@@ -119,14 +120,14 @@ void loop() {
         Keyboard.write(KEY_BACKSPACE);
     }
 
-    // make it 1000 instead:
+    // Make it 1000 instead:
 
     Keyboard.println("1000);");
     Keyboard.println("digitalWrite(13, LOW);");
     Keyboard.println("delay(1000);");
     Keyboard.println("}");
 
-    // tidy up (autoformat):
+    // Tidy up (autoformat):
     Keyboard.press(ctrlKey);
     Keyboard.press('t');
 
@@ -135,7 +136,7 @@ void loop() {
 
     delay(3000);
 
-    // upload code:
+    // Upload code:
 
     Keyboard.press(ctrlKey);
     Keyboard.press('u');
@@ -143,6 +144,6 @@ void loop() {
     delay(100);
     Keyboard.releaseAll();
 
-    // wait for the sweet oblivion of reprogramming:
+    // Wait for the sweet oblivion of reprogramming:
     while (true);
 }

@@ -17,13 +17,13 @@
         - Arduino UNO R3, or other ATmega328 based board, wired for V-USB
             TODO: link to vusb wiring
 
-        - wire to connect D8 to ground (or button)
+        - Wire to connect D8 to ground (or button)
 
-    created 6 Mar 2012
-    modified 27 Mar 2012
+    Created 6 Mar 2012
+    Modified 27 Mar 2012
     by Tom Igoe
 
-    modified 20 Jul 2023
+    Modified 20 Jul 2023
     for unoHID library
 
     This example is in the public domain.
@@ -38,12 +38,12 @@
 
 #include "unoHID.h"
 
-// change this to match your platform:
+// Change this to match your platform:
 int platform = WINDOWS;
 
 void setup() {
 
-    // make pin 8 an input and turn on the pull-up resistor 
+    // Make pin 8 an input and turn on the pull-up resistor 
     // so it goes high unless connected to ground:
     pinMode(8, INPUT_PULLUP);
 
@@ -53,8 +53,8 @@ void setup() {
 void loop() {
 
     while (digitalRead(8) == HIGH) {
-        // do nothing until pin 2 goes low
-        delay(500);
+        // Do nothing until pin 2 goes low
+        delay(100);
     }
 
     delay(1000);
@@ -82,7 +82,7 @@ void loop() {
             delay(100);
             Keyboard.releaseAll();
 
-            // ALT-l:
+            // ALT-S:
             delay(2000);
             Keyboard.press(KEY_LEFT_ALT);
             Keyboard.press('s');
@@ -108,6 +108,6 @@ void loop() {
         break;
     }
 
-    // do nothing:
+    // Do nothing:
     while (true);
 }
