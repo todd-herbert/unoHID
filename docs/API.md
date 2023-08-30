@@ -22,10 +22,15 @@
   - [`Keyboard.releaseAll()`](#keyboardreleaseall)
   - [`Keyboard.write()`](#keyboardwrite)
   - [`Keyboard.setTxDelay()`](#keyboardsettxdelay)
+  - [`VUSB.poll()`](#vusbpoll)
 - [Constants](#constants)
   - [Mouse Buttons](#mouse-buttons)
   - [Special Keys](#special-keys)
   - [Keyboard Layouts](#keyboard-layouts)
+- [Config Macros](#config-macros)
+  - [`POLL_WITH_TIMER_1`](#poll_with_timer_1)
+  - [`POLL_MANUALLY`](#poll_manually)
+  - [`PIN_KEEPALIVE`](#pin_keepalive)
 
 
 ## Include Library
@@ -936,6 +941,31 @@ setTxDelay(duration)
 
 * _duration_: how long, in milliseconds, to pause after each keyboard command. Default value is 0. Allowed data types: `unsigned int`.
 
+___
+### `VUSB.poll()`
+
+Only relevant if [`#POLL_MANUALLY`](#poll_manually) is defined. Should be called frequently, in `loop()`
+
+#### Syntax
+
+```cpp
+VUSB.poll()
+```
+
+#### Example
+```cpp
+#define POLL_MANUALLY
+#include <unoHID.h>
+
+void setup() {
+    Keyboard.begin
+}
+
+void loop() {
+    VUSB.poll();
+}
+```
+
 
 ## Constants
 
@@ -1073,3 +1103,69 @@ setTxDelay(duration)
  `KeyboardLayout_fr_FR` | France
  `KeyboardLayout_it_IT` | Italy
  `KeyboardLayout_sv_SE` | Sweden
+
+## Config Macros
+
+*Defined before `#include <unoHID.h>`*
+
+### `POLL_WITH_TIMER_1`
+
+Handles USB communication using Timer 1, instead of the Timer 2.
+
+#### Example
+
+```cpp
+#define POLL_WITH_TIMER_1
+#include <unoHID.h>
+```
+
+___
+### `POLL_MANUALLY`
+
+Diables handling of USB communication with hardware timer. User must frequently call [`VUSB.poll()`](#vusbpoll)
+
+#### Example
+
+```cpp
+#define POLL_MANUALLY
+#include <unoHID.h>
+
+void setup() {
+    Keyboard.begin();
+}
+
+void loop() {
+    VUSB.poll();
+}
+```
+
+___
+### `PIN_KEEPALIVE`
+
+Used to workaround a specific bug with Arduino Nano, where Windows' serial driver inappropriately causes a reset during V-USB setup.
+
+The specified pin should be connected directly to Nano's RST pin. The library will use the pin to keep RST HIGH at crucial times.
+
+#### Syntax
+
+```cpp
+#define PIN_KEEPALIVE pin
+```
+
+#### Parameters
+
+* _pin_: the pin which has been connected to Nano's RST pin.
+
+#### Example
+
+```cpp
+// Pin 6 connected to RST pin
+#define PIN_KEEPALIVE 6
+
+#include <unoHID.h>
+
+// Continue as usual
+void setup() {
+    Keyboard.begin();
+}
+```
