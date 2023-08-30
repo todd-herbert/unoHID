@@ -71,7 +71,7 @@ For a complete list of commands, [consult the API](./API.md). This library aims 
 
 ## DevKit Sketch
 
-To speed up devlopment, this library comes bundled with a "DevKit" sketch. You can find this with the rest of the examples.
+To speed up development, this library comes bundled with a "DevKit" sketch. You can find this with the rest of the examples.
 
 Upload the sketch to your Arduino and open a serial monitor (9600 baud) to access a command line for executing unoHID commands.
 
@@ -84,9 +84,9 @@ Upload the sketch to your Arduino and open a serial monitor (9600 baud) to acces
 
 Some hardware requires periodic contact with the USB device (Arduino) to remain connected. By default, the library handles this automatically, by "polling" every 10ms with Timer 2. 
 
-This solution may be user-friendly, but it is not particularly elegent. 
+This solution may be user-friendly, but it is not particularly elegant. 
 
-If needed, this automatic polling beviour can be changed:
+If needed, this automatic polling behaviour can be changed:
 
 ```cpp
 // Must come before #include
@@ -124,7 +124,7 @@ To change the device name, edit the file [./src/vusb/usb_descriptor.h](/src/vusb
 
 * Names should be no longer than 18 characters
 * Length must be be updated to match new name
-* Name should be given as a set of chars, seperated with commas (as shown above)
+* Name should be given as a set of chars, separated with commas (as shown above)
 
 
 ### Rate-limiting
@@ -134,6 +134,40 @@ In the official examples from Arduino, pauses are manually added between updates
 If you would prefer, you can instead use `Mouse.setTxDelay(duration)` and `Keyboard.setTxDelay(duration)`. All subsequent commands will be followed with a delay of `duration` (in milliseconds).
 
 Default is 0ms for Mouse, and 20ms for Keyboard.
+
+## Known Issues
+
+* ### In certain conditions, Arduino Nano fails to begin USB connection.
+    #### The issue occurs when *all* of these conditions are met:
+    * Board is Arduino Nano <br />
+    * The Nano's on-board "Mini-B USB connection" is connected to a Windows PC <br />
+    * The Nano's serial port is **not** open on the Windows PC (serial monitor) <br />
+    <br />
+
+
+    The exact cause of this issue is unknown, but seems to involve the Windows driver for the Nano's USB Serial IC.
+
+    *This issue does not occur when the Nano is powered only by the V-USB port.*
+
+    **Suggested Workarounds:**
+    * In Arduino IDE, leave *serial monitor* open during development
+    * Define the `PIN_KEEPALIVE` macro
+
+        ```cpp
+        #define PIN_KEEPALIVE 6
+        #include "unoHID.h"
+
+        // Continue as normal
+        void setup() {
+            Keyboard.begin();
+        }
+        ```
+        Whichever pin you `#define PIN_KEEPALIVE`, you must connect to Nano's "RST" pin.
+
+        This will automatically hold the reset pin HIGH during USB setup, preventing windows from resetting the Nano.
+
+
+    
 
 
 ## Installation

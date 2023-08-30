@@ -1,35 +1,83 @@
+#include "util/delay.h"
 #include "vusb_controller.h"
 
-VUSBController::VUSBController(PollingTimer timer) {
+VUSBController::VUSBController(PollingTimer timer, uint8_t pin_keepalive) {
     // Save the timer which was selected with macros in unoHID.h
     this->polling_timer = timer;
+
+    // Save the keepalive pin, used to hold reset high during setup.
+    // (Bugfix for NANO)
+    this->pin_keepalive = pin_keepalive;
 }
 
 void VUSBController::begin() {
-    
+
     // Setup Pins
-    PORTD = 0;
-    DDRD |= ~USBMASK;
+    // ------------
+    digitalWrite(2, LOW);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    
+    pinMode(2, INPUT);
+    pinMode(4, INPUT);
+    pinMode(5, OUTPUT);
+
+
+    // Workaround: NANO USB reset
+    // Hold RESET pin HIGH during USB setup
+    // ---------------------------------------
+    if(pin_keepalive != -1) {
+        digitalWrite(pin_keepalive, HIGH);
+        pinMode(pin_keepalive, OUTPUT);
+    }
+    
 
     // Reconnect so device is detected
+    // --------------------------------
     cli();
     usbDeviceDisconnect();
-
-    delay(1000);
+    
+    for(uint16_t d = 0; d < 1000; d++) {
+        _delay_ms(1);
+    }
 
     usbDeviceConnect();
     usbInit();
     sei();
 
-    // Wait one second for enumeration to finish. (Android USB OTG requires >500ms)
-    // (Polling every 10ms)
-    for(int i=0; i<100; i++) {
-        usbPoll();
-        delay(10);
-    }  
+
+    // Wait for device to enumerate properly
+    // -------------------------------------
+    uint32_t duration;
+    if (pin_keepalive == -1)
+        duration = 1000;
+    else
+        duration = 5000;    // Workaround: NANO USB reset. Longer wait for system to stabilize
+
+    uint32_t start = millis();
+    uint32_t last = 0;
+    uint32_t now;
+    do {
+        now = millis();
+
+        // Every 10ms, poll manually
+        if (now - last > 10) {
+            usbPoll();
+            last = now;
+        }
+        
+    } while(now - start < duration);
+
+
+    // Workaround: NANO USB reset
+    // Release the pin
+    if (pin_keepalive != -1) 
+        pinMode(pin_keepalive, INPUT_PULLUP);
+
 
     // Setup the timer, if required, for infrequent "keep alive" polling
-
+    // ------------------------------------------------------------------
+    
     if (polling_timer == Timer1) {
         // TIMER 1 for interrupt frequency 125 Hz:
         cli(); // stop interrupts

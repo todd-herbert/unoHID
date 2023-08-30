@@ -11,7 +11,7 @@ class VUSBController {
 
         // Insist on a timer
         VUSBController() = delete;
-        VUSBController(PollingTimer timer);
+        VUSBController(PollingTimer timer, uint8_t pin_keepalive);
 
         void mouseOff();
         void mouseOn();
@@ -33,6 +33,9 @@ class VUSBController {
         
         PollingTimer polling_timer;
         volatile bool autopolling_paused = false;
+
+        // Workaround for obsure error with nano
+        uint8_t pin_keepalive = -1;
 } ;
 
 #endif
