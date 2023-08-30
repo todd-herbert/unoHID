@@ -12,6 +12,7 @@ A user-friendly implementation of [Obdev's V-USB driver](https://www.obdev.at/vu
 [Wiring](#wiring) <br />
 [DevKit Sketch](#devkit-sketch) <br />
 [Advanced Config](#advanced-configuration) <br />
+[Known Issues](#known-issues) <br />
 [Installation](#installation)
 
 
@@ -149,9 +150,9 @@ Default is 0ms for Mouse, and 20ms for Keyboard.
 
     *This issue does not occur when the Nano is powered only by the V-USB port.*
 
-    **Suggested Workarounds:**
-    * In Arduino IDE, leave *serial monitor* open during development
-    * Define the `PIN_KEEPALIVE` macro
+    **Workarounds**
+    * Option 1: In Arduino IDE, leave *serial monitor* open during development
+    * Option 2: Define the `PIN_KEEPALIVE` macro
 
         ```cpp
         #define PIN_KEEPALIVE 6
