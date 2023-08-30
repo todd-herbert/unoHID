@@ -7,7 +7,7 @@
 
     The circuit:
         - VUSB circuit, connected to D2, D4 and D5
-                TODO: link to vusb wiring
+                See https://github.com/todd-herbert/unoHID#wiring
 
         - Push-button attached from pin 8 to +5V
 

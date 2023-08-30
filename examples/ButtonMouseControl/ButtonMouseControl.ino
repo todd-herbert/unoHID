@@ -6,7 +6,7 @@
 
     Hardware:
         - VUSB circuit, connected to D2, D4 and D5
-                TODO: link to vusb wiring
+                See https://github.com/todd-herbert/unoHID#wiring
 
         - Five push-buttons attached to D8, D9, D10, D11, D12
                 NOTE: The pins differ from those mentioned in the attached tutorial.

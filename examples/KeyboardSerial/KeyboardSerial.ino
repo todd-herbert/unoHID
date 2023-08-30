@@ -9,7 +9,7 @@
 
     The circuit:
         - VUSB circuit, connected to D2, D4 and D5
-            TODO: link to vusb wiring
+            See https://github.com/todd-herbert/unoHID#wiring
 
     Created 21 Oct 2011
     Modified 27 Mar 2012

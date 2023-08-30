@@ -15,7 +15,7 @@
     Circuit:
 
         - Arduino UNO R3, or other ATmega328 based board, wired for V-USB
-            TODO: link to vusb wiring
+            See https://github.com/todd-herbert/unoHID#wiring
 
         - Wire to connect D8 to ground (or button)
 

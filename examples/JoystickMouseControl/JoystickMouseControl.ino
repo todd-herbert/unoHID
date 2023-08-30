@@ -9,7 +9,7 @@
 
     Hardware:
         - VUSB circuit, connected to D2, D4 and D5
-                TODO: link to vusb wiring
+                See https://github.com/todd-herbert/unoHID#wiring
 
         - 2-axis joystick connected to pins A0 and A1
 
