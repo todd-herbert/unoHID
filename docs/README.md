@@ -3,7 +3,7 @@
 Use Arduino UNO as USB Keyboard and Mouse.<br />
 
 Aims to be compatible with official Arduino [Mouse](https://www.arduino.cc/reference/en/language/functions/usb/mouse/) and [Keyboard](https://www.arduino.cc/reference/en/language/functions/usb/keyboard/) libraries.<br />
-A user-friendly implementation of [Obdev's V-USB driver](https://www.obdev.at/vusb/), for Arduino UNO R3 and other boards based on ATmega328.
+A user-friendly implementation of [Obdev's V-USB driver](https://www.obdev.at/vusb/), for Arduino UNO R3 and other boards based on ATmega328P
 
 
 **[API](/docs/API.md)** <br />
