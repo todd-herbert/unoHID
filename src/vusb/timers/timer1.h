@@ -6,7 +6,7 @@
 #ifdef POLL_WITH_TIMER1
 
     ISR(TIMER1_COMPA_vect){
-        VUSB.poll();   //Every 1000ms
+        VUSB.poll();   //Every 8ms - 125Hz
     }
 
 #endif

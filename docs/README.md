@@ -8,12 +8,15 @@ A user-friendly implementation of [Obdev's V-USB driver](https://www.obdev.at/vu
 
 **[API](/docs/API.md)** <br />
 
-[What is V-USB?](#what-is-v-usb) <br />
-[Wiring](#wiring) <br />
-[DevKit Sketch](#devkit-sketch) <br />
-[Advanced Config](#advanced-configuration) <br />
-[Known Issues](#known-issues) <br />
-[Installation](#installation)
+
+- [What is V-USB?](#what-is-v-usb)
+- [Wiring](#wiring)
+- [Using the library](#using-the-library)
+- [DevKit Sketch](#devkit-sketch)
+- [Advanced Configuration](#advanced-configuration)
+- [Connection Issues](#connection-issues)
+- [Installation](#installation)
+
 
 
 ## What is V-USB?
@@ -136,37 +139,41 @@ If you would prefer, you can instead use `Mouse.setTxDelay(duration)` and `Keybo
 
 Default is 0ms for Mouse, and 20ms for Keyboard.
 
-## Known Issues
+## Connection Issues
 
-* ### In certain conditions, Arduino Nano fails to begin USB connection.
-    #### The issue occurs when *all* of these conditions are met:
-    * Board is Arduino Nano <br />
-    * The Nano's on-board "Mini-B USB connection" is connected to a Windows PC <br />
-    * The Nano's serial port is **not** open on the Windows PC (serial monitor) <br />
-    <br />
+**In certain conditions, Arduino Nano appears to have difficulty beginning a USB connection.**
 
 
-    The exact cause of this issue is unknown, but seems to involve the Windows driver for the Nano's USB Serial IC.
 
-    *This issue does not occur when the Nano is powered only by the V-USB port.*
+The exact cause of this issue is unknown, but seems to involve the Windows driver for the Nano's USB Serial IC.
 
-    **Workarounds**
-    * Option 1: In Arduino IDE, leave *serial monitor* open during development
-    * Option 2: Define the `PIN_KEEPALIVE` macro
+* This issue does not occur when the Nano is powered only by the V-USB port.
 
-        ```cpp
-        #define PIN_KEEPALIVE 6
-        #include "unoHID.h"
+* This issue does not occur if Arduino IDE Serial Monitor is left open
 
-        // Continue as normal
-        void setup() {
-            Keyboard.begin();
-        }
-        ```
-        Whichever pin you `#define PIN_KEEPALIVE`, you must connect to Nano's "RST" pin.
+**Workaround:**
 
-        This will automatically hold the reset pin HIGH during USB setup, preventing windows from resetting the Nano.
+Keeping the Arduino's reset pin `HIGH` during connection seems to prevent the issue.
 
+UnoHID can take care of this. You must do two things:
+
+1. Directly connect Nano's RST pin to any spare pin. &nbsp; (Example: Pin 6)<br />
+ 
+    ![diagram of Arduino Nano, with pin 6 wired directly to RST pin](./wiring_keepalive.png)
+
+2. Define this pin as `PIN_KEEPALIVE`, before including the UnoHID library.
+
+    ```cpp
+    #define PIN_KEEPALIVE 6
+    #include "unoHID.h"
+
+    // Continue as normal
+    void setup() {
+        Keyboard.begin();
+    }
+    ```
+
+    This will automatically hold the reset pin HIGH during USB setup, (hopefully) preventing windows from resetting the Nano. 
 
     
 
