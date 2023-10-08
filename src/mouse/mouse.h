@@ -1,8 +1,3 @@
-/*
- * This file describes a digitizer / graphics tablet device, along with supporting methods.
- * The included VUSB library will perform the appropriate USB communications.
- */
-
 #ifndef __MOUSE_H__
 #define __MOUSE_H__
 

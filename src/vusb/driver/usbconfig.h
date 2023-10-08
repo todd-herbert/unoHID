@@ -1,7 +1,7 @@
 #ifndef __usbconfig_h_included__
 #define __usbconfig_h_included__
 
-// This file describes our imaginary stylus / mouse device to the VUSB driver
+// This file provided by ObDev, for user to configure the VUSB driver
 
 /* ---------------------------- Hardware Config ---------------------------- */
 
