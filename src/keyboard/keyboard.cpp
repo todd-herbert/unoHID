@@ -19,7 +19,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "Keyboard.h"
+#include "keyboard.h"
 #include "KeyboardLayout.h"
 #include "Keyboard_de_DE.h"
 
